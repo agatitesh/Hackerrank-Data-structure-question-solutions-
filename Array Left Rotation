@@ -1,0 +1,207 @@
+A left rotation operation on an array of size  shifts each of the array's elements  unit to the left. For example, if  left rotations are performed on array , then the array would become .
+
+Given an array of  integers and a number, , perform  left rotations on the array. Then print the updated array as a single line of space-separated integers.
+
+Input Format
+
+The first line contains two space-separated integers denoting the respective values of  (the number of integers) and  (the number of left rotations you must perform). 
+The second line contains  space-separated integers describing the respective elements of the array's initial state.
+
+Constraints
+
+Output Format
+
+Print a single line of  space-separated integers denoting the final state of the array after performing  left rotations.
+
+Sample Input
+
+5 4
+1 2 3 4 5
+Sample Output
+
+5 1 2 3 4
+Explanation
+
+When we perform  left rotations, the array undergoes the following sequence of changes:
+
+Thus, we print the array's final state as a single line of space-separated values, which is 5 1 2 3 4.
+
+Current Buffer (saved locally, editable)    
+ 
+ 
+ 
+ 
+1
+#include <stdio.h>
+2
+#include <stdlib.h>
+3
+​
+4
+//#include<stdio.h>
+5
+//#include<
+6
+​
+7
+int main ()
+8
+{
+9
+    int i,n,k,j,l;
+10
+    scanf("%d",&n);
+11
+    int arr[n];
+12
+    if(n==0)
+13
+    {
+14
+        return 0;
+15
+    }
+16
+        
+17
+   scanf("%d",&k);
+18
+   for(i=0;i<=n-1;i++)
+19
+    {
+20
+        scanf("%d",&arr[i]);
+21
+        }
+22
+    
+23
+    rotatespace(arr,n,k);
+24
+   /* for(j=0;j<k;j++)
+25
+    {
+26
+     rotate(arr,n-1) ;
+27
+    }
+28
+    
+29
+    /*for(l=0;l<=n-1;l++)
+30
+    {printf("%d ",arr[l]);
+31
+    }*/
+32
+    return 0;
+33
+}
+34
+​
+35
+/*int rotate(int a[],int n)
+36
+{
+37
+    int i,j;
+38
+    j=a[0];
+39
+        for(i=0;i<n;i++)
+40
+    {
+41
+      a[i]=a[i+1];
+42
+     }
+43
+    a[i]=j;
+44
+    
+45
+    return ;
+46
+}*/
+47
+​
+48
+  int rotatespace(int a[], int n,int r)
+49
+{
+50
+    int ar[r];
+51
+    int ar2[n];
+52
+    int i,j,k,l;
+53
+    int q=n-r;
+54
+  //  printf("q=%d-%d-%d",q,n,r);
+55
+    for (i=0;i<=r-1;i++)
+56
+    {
+57
+        ar[i]=a[i];
+58
+       // printf("\nar[i]->%d\n",ar[i]);
+59
+    }
+60
+​
+61
+    int counter =0;
+62
+      for(j=0;j<=n-1;j++)
+63
+      {
+64
+          if(j<r)
+65
+          {
+66
+​
+67
+              ar2[q]=ar[j];
+68
+              //printf("\n%d->%d->%d",q,ar2[q],ar[j]);
+69
+              q++;
+70
+          }
+71
+          else
+72
+​
+73
+{
+74
+            ar2[counter]=a[j];
+75
+            //printf("\n ar2[%d]=%d\n",counter,ar2[counter]);
+76
+          counter ++;
+77
+          }
+78
+​
+79
+      }
+80
+​
+81
+​
+82
+      for(l=0;l<=n-1;l++)
+83
+    {printf("%d ",ar2[l]);
+84
+​
+85
+    }
+86
+      return;
+87
+}
