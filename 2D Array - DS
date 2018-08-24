@@ -1,0 +1,155 @@
+Given a  2D Array, :
+
+1 1 1 0 0 0
+0 1 0 0 0 0
+1 1 1 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+We define an hourglass in  to be a subset of values with indices falling in this pattern in 's graphical representation:
+
+a b c
+  d
+e f g
+There are  hourglasses in , and an hourglass sum is the sum of an hourglass' values. Calculate the hourglass sum for every hourglass in , then print the maximum hourglass sum.
+
+For example, given the 2D array:
+
+-9 -9 -9  1 1 1 
+ 0 -9  0  4 3 2
+-9 -9 -9  1 2 3
+ 0  0  8  6 6 0
+ 0  0  0 -2 0 0
+ 0  0  1  2 4 0
+We calculate the following  hourglass values:
+
+-63, -34, -9, 12, 
+-10, 0, 28, 23, 
+-27, -11, -2, 10, 
+9, 17, 25, 18
+Our highest hourglass value is  from the hourglass:
+
+0 4 3
+  1
+8 6 6
+Note: If you have already solved the Java domain's Java 2D Array challenge, you may wish to skip this challenge.
+
+Function Description
+
+Complete the function hourglassSum in the editor below. It should return an integer, the maximum hourglass sum in the array.
+
+hourglassSum has the following parameter(s):
+
+arr: an array of integers
+Input Format
+
+Each of the  lines of inputs  contains  space-separated integers .
+
+Constraints
+
+Output Format
+
+Print the largest (maximum) hourglass sum found in .
+
+Sample Input
+
+1 1 1 0 0 0
+0 1 0 0 0 0
+1 1 1 0 0 0
+0 0 2 4 4 0
+0 0 0 2 0 0
+0 0 1 2 4 0
+Sample Output
+
+19
+Explanation
+
+ contains the following hourglasses:
+
+image
+
+The hourglass with the maximum sum () is:
+
+2 4 4
+  2
+1 2 4
+Current Buffer (saved locally, editable)    
+ 
+ 
+ 
+ 
+
+int main()
+{
+    int matrix[6][6];
+    for(int i = 0;i < 6;i++) {
+        for(int j = 0;j < 6;j++) {
+             scanf("%d",&matrix[i][j]);
+        }
+    }
+    int maxsum = -1000,jj = 0;
+    for(int i = 0;i < 4;i++) {
+        int sum = 0;
+        for(int j = jj;j < jj+3;j++) {
+            sum += matrix[i][j];
+            if(j==jj) sum += matrix[i+1][jj+1];
+            sum += matrix[i+2][j];
+        }
+        jj = (jj < 3) ? jj+1 : 0;
+        if(sum > maxsum) maxsum = sum;
+        if(jj != 0) i--;
+    }
+    printf("%d",maxsum);
+    return 0;
+}
+
+1
+​
+2
+int main()
+3
+{
+4
+    int matrix[6][6];
+5
+    for(int i = 0;i < 6;i++) {
+6
+        for(int j = 0;j < 6;j++) {
+7
+             scanf("%d",&matrix[i][j]);
+8
+        }
+9
+    }
+10
+    int maxsum = -1000,jj = 0;
+11
+    for(int i = 0;i < 4;i++) {
+12
+        int sum = 0;
+13
+        for(int j = jj;j < jj+3;j++) {
+14
+            sum += matrix[i][j];
+15
+            if(j==jj) sum += matrix[i+1][jj+1];
+16
+            sum += matrix[i+2][j];
+17
+        }
+18
+        jj = (jj < 3) ? jj+1 : 0;
+19
+        if(sum > maxsum) maxsum = sum;
+20
+        if(jj != 0) i--;
+21
+    }
+22
+    printf("%d",maxsum);
+23
+    return 0;
+24
+}
+25
+​
